@@ -19,7 +19,6 @@ jobs:
         id: jokes
 
       - name: create-issue
-        needs: ha-ha
         uses: ./.github/actions/issue-maker
         with:
           repo-token: ${{secrets.GITHUB_TOKEN}}
