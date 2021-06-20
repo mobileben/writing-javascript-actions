@@ -9,6 +9,8 @@ async function run() {
 
         const octokit = new github.getOctokit(token);
 
+        console.log("Issue title will be " + issueTitle);
+        console.log("Joke " + jokeBody);
         const newIssue = await octokit.rest.issues.create({
             repo: github.context.repo.repo,
             owner: github.context.repo.owner,
