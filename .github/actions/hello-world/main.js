@@ -37,10 +37,11 @@ async function run() {
 			//head,
 			owner: github.context.repo.owner,
 			repo: github.context.repo.repo
-			, basehead: `${base}...${head}`
+			, basehead: `${github.context.repo.owner}:${base}...${github.context.repo.owner}:${head}`
 		});
 
 		console.log(`${response}`);
+		console.log(`${response.status}`);
 	} catch (error) {
 		core.setFailed(error.message);
 	}
