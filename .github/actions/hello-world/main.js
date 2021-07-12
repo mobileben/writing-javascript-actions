@@ -34,9 +34,9 @@ async function run() {
 			console.log(github.context.payload.pull_request.base.label);
 			console.log(github.context.payload.pull_request.base.ref);
 			console.log(github.context.payload.pull_request.base.repo);
-			console.log(github.context.payload.pull_request.base.user);
-			console.log(github.context.payload.repository);
-			console.log(github.context.payload.sender);
+			console.log(`${github.context.payload.pull_request.base.user}`);
+			console.log(`repository: ${github.context.payload.repository}`);
+			console.log(`sender: ${github.context.payload.sender}`);
 		}
 
 		console.log(`${base}`);
