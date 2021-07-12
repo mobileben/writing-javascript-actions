@@ -42,6 +42,11 @@ async function run() {
 
 		console.log(`${response}`);
 		console.log(`${response.status}`);
+		if (response.data.files) {
+			for (const file of files) {
+				core.info(`${file.filename}: ${file.stats}`);
+			}
+		}
 	} catch (error) {
 		core.setFailed(error.message);
 	}
