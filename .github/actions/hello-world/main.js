@@ -14,23 +14,30 @@ async function run() {
 		console.log(`Hello ${thirdGreeting}`);
 	}
 
+	let base = undefined;
+	let head = undefined;
+
 	if (github.context.eventName === 'push') {
 		console.log(`${github.context.payload}`);
-		console.log(`${github.context.payload.before}`);
-		console.log(`${github.context.payload.after}`);
+		base = github.context.payload.before;
+		head = github.context.payload.after;
 	} else if (github.context.eventName === 'push_request') {
 		console.log(`${github.context.payload}`);
-		console.log(`${github.context.payload.pull_request.base}`);
-		console.log(`${github.context.payload.pull_request.head}`);
 
-		const response = await client.rest.repos.compareCommitsWithBasehead( {
-			owner: github.context.repo.owner,
-			repo: github.context.repo.repo,
-			basehead: `${github.context.payload.pull_request.base.sha}..${github.context.payload.pull_request.head.sha}`
-		});
-
-		console.log(`${response}`);
+		base = github.context.payload.pull_request.base;
+		head = github.context.payload.pull_request.head;
 	}
+
+	console.log(`${base}`);
+	console.log(`${head}`);
+
+	const response = await client.rest.repos.compareCommitsWithBasehead( {
+		owner: github.context.repo.owner,
+		repo: github.context.repo.repo,
+		basehead: `${base}..${head}`
+	});
+
+	console.log(`${response}`);
 }
 
 run();
