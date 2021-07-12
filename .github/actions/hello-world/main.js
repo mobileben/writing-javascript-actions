@@ -22,16 +22,19 @@ async function run() {
 			console.log(`${github.context.payload}`);
 			base = github.context.payload.before;
 			head = github.context.payload.after;
+			console.log(Object.keys(github.context.payload));
 		} else if (github.context.eventName === 'pull_request') {
 			console.log(`${github.context.payload}`);
 
 			base = github.context.payload.pull_request.base.sha;
 			head = github.context.payload.pull_request.head.sha;
+			console.log(Object.keys(github.context.payload.pull_request));
+			console.log(github.context.payload.pull_request.repository);
+			console.log(github.context.payload.pull_request.sender);
 		}
 
 		console.log(`${base}`);
 		console.log(`${head}`);
-		console.log(Object.keys(github.context.payload));
 		const response = await client.rest.repos.compareCommitsWithBasehead( {
 			//base,
 			//head,
