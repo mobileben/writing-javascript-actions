@@ -1,5 +1,4 @@
-
-# name: "JS Actions"
+name: JS Actions
 
  on: [push, pull_request]
 
