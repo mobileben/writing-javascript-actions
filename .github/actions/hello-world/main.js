@@ -31,7 +31,7 @@ async function run() {
 
 		console.log(`${base}`);
 		console.log(`${head}`);
-		console.log(Object.keys(github.context.payload.repo));
+		console.log(Object.keys(github.context.payload));
 		const response = await client.rest.repos.compareCommitsWithBasehead( {
 			//base,
 			//head,
