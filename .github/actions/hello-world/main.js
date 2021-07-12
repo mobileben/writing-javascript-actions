@@ -29,8 +29,8 @@ async function run() {
 			base = github.context.payload.pull_request.base.sha;
 			head = github.context.payload.pull_request.head.sha;
 			console.log(Object.keys(github.context.payload.pull_request));
-			console.log(github.context.payload.pull_request.repository);
-			console.log(github.context.payload.pull_request.sender);
+			console.log(github.context.payload.repository);
+			console.log(github.context.payload.sender);
 		}
 
 		console.log(`${base}`);
