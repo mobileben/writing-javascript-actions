@@ -31,7 +31,7 @@ async function run() {
 
 		console.log(`${base}`);
 		console.log(`${head}`);
-
+		core.info(`${github}`);
 		const response = await client.rest.repos.compareCommitsWithBasehead( {
 			//base,
 			//head,
