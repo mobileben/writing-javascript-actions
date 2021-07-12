@@ -5,7 +5,7 @@ description: "say hello with actions"
 inputs:
   token:
 	required: true
-	default: ${{github.token}}
+	default: ${{ github.token }}
   first-greeting:
     description: "who would you like to greet in the console"
     required: true

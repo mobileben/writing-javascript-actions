@@ -6,7 +6,7 @@ const secondGreeting = core.getInput("second-greeting");
 const thirdGreeting = core.getInput("third-greeting");
 
 const client = github.getOctokit(
-	core.getInput('input', {required: true});
+	core.getInput('token', {required: true});
 );
 
 console.log(`Hello ${firstGreeting}`);
