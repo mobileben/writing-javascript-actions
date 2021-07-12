@@ -32,11 +32,12 @@ async function run() {
 		console.log(`${base}`);
 		console.log(`${head}`);
 
-		const response = await client.rest.repos.compareCommits( {
-			base,
-			head,
+		const response = await client.rest.repos.compareCommitsWithBasehead( {
+			//base,
+			//head,
 			owner: github.context.repo.owner,
 			repo: github.context.repo.repo
+			, basehead: `${base}...${head}`
 		});
 
 		console.log(`${response}`);
