@@ -31,6 +31,10 @@ async function run() {
 			console.log(Object.keys(github.context.payload.pull_request));
 			console.log(Object.keys(github.context.payload.pull_request.base));
 			console.log(Object.keys(github.context.payload.pull_request.head));
+			console.log(github.context.payload.pull_request.base.label);
+			console.log(github.context.payload.pull_request.base.ref);
+			console.log(github.context.payload.pull_request.base.repo);
+			console.log(github.context.payload.pull_request.base.user);
 			console.log(github.context.payload.repository);
 			console.log(github.context.payload.sender);
 		}
