@@ -1,14 +1,13 @@
 name: JS Actions
+on: [push, pull_request]
 
- on: [push, pull_request]
+jobs:
+	action:
+	runs-on: "ubuntu-latest"
+	steps:
+	  - uses: actions/checkout@v1
 
- jobs:
-  action:
-    runs-on: "ubuntu-latest"
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: "hello-action"
-        uses: ./.github/actions/hello-world
-        with:
-          third-greeting: "Salutations"
+	  - name: "hello-action"
+		uses: ./.github/actions/hello-world
+		with:
+		  third-greeting: "Salutations"
