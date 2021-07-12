@@ -22,7 +22,7 @@ async function run() {
 			console.log(`${github.context.payload}`);
 			base = github.context.payload.before;
 			head = github.context.payload.after;
-		} else if (github.context.eventName === 'push_request') {
+		} else if (github.context.eventName === 'pull_request') {
 			console.log(`${github.context.payload}`);
 
 			base = github.context.payload.pull_request.base;
