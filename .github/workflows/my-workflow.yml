@@ -7,6 +7,6 @@ jobs:
    steps:
       - uses: actions/checkout@v1
       - name: "hello-action"
-      uses: ./.github/actions/hello-world
-      with:
-         third-greeting: "Salutations"
+        uses: ./.github/actions/hello-world
+        with:
+          third-greeting: "Salutations"
