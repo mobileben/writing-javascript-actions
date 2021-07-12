@@ -43,7 +43,7 @@ async function run() {
 		console.log(`${response}`);
 		console.log(`${response.status}`);
 		if (response.data.files) {
-			for (const file of files) {
+			for (const file of response.data.files) {
 				core.info(`${file.filename}: ${file.stats}`);
 			}
 		}
