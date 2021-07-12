@@ -13,4 +13,6 @@ if (thirdGreeting) {
 
 if (github.context.eventName === 'push') {
     console.log(`${github.context.payload}`);
+    console.log(`${github.context.payload.base}`);
+	console.log(`${github.context.payload.head}`);
 }
