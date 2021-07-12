@@ -25,8 +25,8 @@ async function run() {
 		} else if (github.context.eventName === 'pull_request') {
 			console.log(`${github.context.payload}`);
 
-			base = github.context.payload.pull_request.base;
-			head = github.context.payload.pull_request.head;
+			base = github.context.payload.pull_request.base.sha;
+			head = github.context.payload.pull_request.head.sha;
 		}
 
 		console.log(`${base}`);
