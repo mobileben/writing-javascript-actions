@@ -23,6 +23,10 @@ async function run() {
 			base = github.context.payload.before;
 			head = github.context.payload.after;
 			console.log(Object.keys(github.context.payload));
+			console.log(`compare: ${github.context.payload.compare}`);
+			console.log(`ref: ${github.context.payload.ref}`);
+			console.log(`pusher: ${github.context.payload.pusher}`);
+			console.log(`repository: ${github.context.payload.repository}`);
 		} else if (github.context.eventName === 'pull_request') {
 			console.log(`${github.context.payload}`);
 
