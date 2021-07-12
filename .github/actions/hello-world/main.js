@@ -2,42 +2,46 @@ const core = require("@actions/core");
 const github = require('@actions/github');
 
 async function run() {
-	const firstGreeting = core.getInput("first-greeting");
-	const secondGreeting = core.getInput("second-greeting");
-	const thirdGreeting = core.getInput("third-greeting");
+	try {
+		const firstGreeting = core.getInput("first-greeting");
+		const secondGreeting = core.getInput("second-greeting");
+		const thirdGreeting = core.getInput("third-greeting");
 
-	const client = github.getOctokit(core.getInput('token', {required: true}));
+		const client = github.getOctokit(core.getInput('token', {required: true}));
 
-	console.log(`Hello ${firstGreeting}`);
-	console.log(`Hello ${secondGreeting}`);
-	if (thirdGreeting) {
-		console.log(`Hello ${thirdGreeting}`);
+		console.log(`Hello ${firstGreeting}`);
+		console.log(`Hello ${secondGreeting}`);
+		if (thirdGreeting) {
+			console.log(`Hello ${thirdGreeting}`);
+		}
+
+		let base = undefined;
+		let head = undefined;
+
+		if (github.context.eventName === 'push') {
+			console.log(`${github.context.payload}`);
+			base = github.context.payload.before;
+			head = github.context.payload.after;
+		} else if (github.context.eventName === 'push_request') {
+			console.log(`${github.context.payload}`);
+
+			base = github.context.payload.pull_request.base;
+			head = github.context.payload.pull_request.head;
+		}
+
+		console.log(`${base}`);
+		console.log(`${head}`);
+
+		const response = await client.rest.repos.compareCommitsWithBasehead( {
+			owner: github.context.repo.owner,
+			repo: github.context.repo.repo,
+			basehead: `${base}..${head}`
+		});
+
+		console.log(`${response}`);
+	} catch (error) {
+		core.setFailed(error.message);
 	}
-
-	let base = undefined;
-	let head = undefined;
-
-	if (github.context.eventName === 'push') {
-		console.log(`${github.context.payload}`);
-		base = github.context.payload.before;
-		head = github.context.payload.after;
-	} else if (github.context.eventName === 'push_request') {
-		console.log(`${github.context.payload}`);
-
-		base = github.context.payload.pull_request.base;
-		head = github.context.payload.pull_request.head;
-	}
-
-	console.log(`${base}`);
-	console.log(`${head}`);
-
-	const response = await client.rest.repos.compareCommitsWithBasehead( {
-		owner: github.context.repo.owner,
-		repo: github.context.repo.repo,
-		basehead: `${base}..${head}`
-	});
-
-	console.log(`${response}`);
 }
 
 run();
